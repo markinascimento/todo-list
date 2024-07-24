@@ -27,7 +27,7 @@ export function Sidebar() {
 
       <aside
         className={cn(
-          "bg-gray-50 fixed w-full h-full -left-[100%] transition-all duration-1000 md:static md:w-72",
+          "bg-gray-50 fixed w-full h-full -left-[100%] z-10 transition-all duration-1000 md:static md:w-72",
           open && "left-0"
         )}
       >

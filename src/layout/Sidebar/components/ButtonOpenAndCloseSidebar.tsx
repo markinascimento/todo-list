@@ -15,7 +15,7 @@ export function ButtonOpenAndCloseSidebar({
     <button
       type="button"
       onClick={onOpen}
-      className="flex flex-col gap-1 top-3 left-3 fixed z-10 md:hidden"
+      className="flex flex-col gap-1 top-3 left-3 fixed z-20 md:hidden"
     >
       <div
         className={cn(
