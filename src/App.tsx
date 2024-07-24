@@ -1,10 +1,10 @@
 import { BrowserRouter } from "react-router-dom";
-import { Sidebar } from "./components/Sidebar";
+import { Router } from "./routes";
 
 export function App() {
   return (
     <BrowserRouter>
-      <Sidebar />
+      <Router />
     </BrowserRouter>
   );
 }
