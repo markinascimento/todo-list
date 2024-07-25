@@ -1,5 +1,5 @@
 // -> ReactJS
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 // -> Custom hooks
 import { useTodo } from "../../hooks/useTodo";
@@ -17,9 +17,13 @@ export function useHomeController() {
     setDrawerModal(false);
   }, []);
 
+  const filteredTasksOnlyNotCompleted = useMemo(() => {
+    return tasks.filter((task) => task.complete !== true);
+  }, [tasks]);
+
   return {
-    tasks,
     drawerModal,
+    filteredTasksOnlyNotCompleted,
     openDrawerModal,
     closeDrawerModal,
   };

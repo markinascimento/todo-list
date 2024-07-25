@@ -3,10 +3,15 @@ import { useHomeController } from "./useHomeController";
 
 // -> Components
 import { DrawerModal } from "./components/DrawerModal";
+import { TaskCard } from "./components/TaskCard";
 
 export function Home() {
-  const { tasks, drawerModal, closeDrawerModal, openDrawerModal } =
-    useHomeController();
+  const {
+    filteredTasksOnlyNotCompleted,
+    drawerModal,
+    closeDrawerModal,
+    openDrawerModal,
+  } = useHomeController();
 
   return (
     <div className="flex flex-1 flex-col w-full max-w-[1024px] h-full m-auto overflow-hidden pb-4 md:pb-0">
@@ -14,27 +19,14 @@ export function Home() {
         <h1> Boa noite </h1>
       </header>
 
-      <main className="flex flex-1 flex-col  overflow-auto">
-        {tasks.length < 0 ? (
+      <main className="flex flex-1 flex-col overflow-auto pt-4">
+        {filteredTasksOnlyNotCompleted.length <= 0 ? (
           <>
-            <span> principal </span> <br /> <br /> <br /> <br /> <br />
-            <span> principal </span> <br /> <br /> <br /> <br /> <br />
-            <span> principal </span> <br /> <br /> <br /> <br /> <br />
-            <span> principal </span> <br /> <br /> <br /> <br /> <br />
-            <span> principal </span> <br /> <br /> <br /> <br /> <br />
-            <span> principal </span> <br /> <br /> <br /> <br /> <br />
-            <span> principal </span> <br /> <br /> <br /> <br /> <br />
-            <span> principal </span> <br /> <br /> <br /> <br /> <br />
-            <span> principal </span> <br /> <br /> <br /> <br /> <br />
-            <span> principal </span> <br /> <br /> <br /> <br /> <br />
-            <span> principal </span> <br /> <br /> <br /> <br /> <br />
-            <span> principal 2 </span> <br /> <br /> <br /> <br /> <br />
+            <span> nadinha </span>
           </>
         ) : (
-          tasks.map((task) => (
-            <div key={task.task}>
-              <span> {task.task} </span>
-            </div>
+          filteredTasksOnlyNotCompleted.map((task) => (
+            <TaskCard key={task.task} task={task} />
           ))
         )}
       </main>

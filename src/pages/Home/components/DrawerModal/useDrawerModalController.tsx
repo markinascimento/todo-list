@@ -8,6 +8,7 @@ export function useDrawerModalController({ onClose }: { onClose(): void }) {
   const { handleCreateNewTask } = useTodo();
 
   const [task, setTask] = useState<string>("");
+  const [type, setType] = useState<string>("");
 
   function handleChangeTask(event: ChangeEvent<HTMLInputElement>) {
     setTask(event.target.value);
@@ -16,13 +17,15 @@ export function useDrawerModalController({ onClose }: { onClose(): void }) {
   function handleSubmitForm(event: FormEvent) {
     event.preventDefault();
 
-    handleCreateNewTask(task);
+    handleCreateNewTask(task, type);
     onClose();
     setTask("");
   }
 
   return {
     task,
+    type,
+    setType,
     handleChangeTask,
     handleSubmitForm,
   };

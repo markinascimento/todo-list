@@ -7,16 +7,17 @@ export interface ITodoContextProps {
   tasks: TaskDTO[];
   handleRemoveTask(task: string): void;
   handleCompleteTask(task: string): void;
-  handleCreateNewTask(task: string): void;
+  handleCreateNewTask(task: string, type: string): void;
 }
 
 export const TodoContext = createContext({} as ITodoContextProps);
 
 export default function TodoProvider({ children }: { children: ReactNode }) {
-  const [tasks, setTasks] = useState<TaskDTO[]>([]);
-  // const [type, setType] = useState<string>("");
+  const [tasks, setTasks] = useState<TaskDTO[]>([
+    { complete: false, task: "Ir para academia", type: "GYM" },
+  ]);
 
-  const handleCreateNewTask = useCallback((task: string) => {
+  const handleCreateNewTask = useCallback((task: string, type: string) => {
     setTasks((prevState) => {
       const itemIndex = prevState.findIndex((item) => item.task === task);
 
@@ -26,7 +27,7 @@ export default function TodoProvider({ children }: { children: ReactNode }) {
 
       const newTask = {
         task,
-        type: "",
+        type,
         complete: false,
       };
 
@@ -52,8 +53,6 @@ export default function TodoProvider({ children }: { children: ReactNode }) {
       });
     });
   }, []);
-
-  console.log({ tasks });
 
   return (
     <TodoContext.Provider

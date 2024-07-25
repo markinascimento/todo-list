@@ -7,9 +7,13 @@ import { cn } from "../../../../utils/cn";
 // -> Controller
 import { useDrawerModalController } from "./useDrawerModalController";
 
+// -> Config
+import { selectedTypeOptions } from "../../../../config/selectedTypeOptions";
+
 // -> Components
 import { Button } from "../../../../components/Button";
 import { Input } from "../../../../components/Input";
+import { Select } from "../../../../components/Select";
 
 // -> Types
 interface IDrawerModalProps {
@@ -18,9 +22,8 @@ interface IDrawerModalProps {
 }
 
 export function DrawerModal({ open, onClose }: IDrawerModalProps) {
-  const { task, handleChangeTask, handleSubmitForm } = useDrawerModalController(
-    { onClose }
-  );
+  const { task, type, setType, handleChangeTask, handleSubmitForm } =
+    useDrawerModalController({ onClose });
 
   return (
     <div
@@ -54,7 +57,8 @@ export function DrawerModal({ open, onClose }: IDrawerModalProps) {
             onChange={handleChangeTask}
           />
 
-          <Input placeholder="Tipo" />
+          <Select type={type} setType={setType} options={selectedTypeOptions} />
+
           <Button type="submit" />
         </form>
       </main>
