@@ -23,43 +23,41 @@ export function DrawerModal({ open, onClose }: IDrawerModalProps) {
   );
 
   return (
-    <div className="bg-black/50 inset-0 fixed backdrop-blur-sm h-full z-10 w-full">
-      <div
-        className={cn(
-          `bg-zinc-900 fixed w-full h-[80vh] -bottom-[100%] left-0 z-10 transition-all duration-1000 
+    <div
+      className={cn(
+        `bg-zinc-900 fixed w-full h-[80vh] -bottom-[100%] left-0 z-10 transition-all duration-1000 
         rounded-t-[32px] overflow-hidden`,
-          open && "bottom-0"
-        )}
-      >
-        <main className="flex flex-col items-center justify-start w-full max-w-[600px] h-full px-4 gap-4 m-auto">
-          <header className="flex items-center justify-end px-4 w-full min-h-12">
-            <h2 className="w-full text-zinc-100 font-semibold text-center md:text-lg">
-              Cadastrar uma nova atividade
-            </h2>
-            <button
-              type="button"
-              onClick={onClose}
-              className="flex items-center justify-center w-10 h-10"
-            >
-              <X className="size-5 text-zinc-100" />
-            </button>
-          </header>
-
-          <form
-            onSubmit={handleSubmitForm}
-            className="flex flex-col flex-1 h-full w-full items-center justify-center gap-4 pb-10"
+        open && "bottom-0"
+      )}
+    >
+      <main className="flex flex-col items-center justify-start w-full max-w-[600px] h-full px-4 gap-4 m-auto">
+        <header className="flex items-center justify-end px-4 w-full min-h-12">
+          <h2 className="w-full text-zinc-100 font-semibold text-center md:text-lg">
+            Cadastrar uma nova atividade
+          </h2>
+          <button
+            type="button"
+            onClick={onClose}
+            className="flex items-center justify-center w-10 h-10"
           >
-            <Input
-              placeholder="Titulo"
-              value={task}
-              onChange={handleChangeTask}
-            />
+            <X className="size-5 text-zinc-100" />
+          </button>
+        </header>
 
-            <Input placeholder="Tipo" />
-            <Button type="submit" />
-          </form>
-        </main>
-      </div>
+        <form
+          onSubmit={handleSubmitForm}
+          className="flex flex-col flex-1 h-full w-full items-center justify-center gap-4 pb-10"
+        >
+          <Input
+            placeholder="Titulo"
+            value={task}
+            onChange={handleChangeTask}
+          />
+
+          <Input placeholder="Tipo" />
+          <Button type="submit" />
+        </form>
+      </main>
     </div>
   );
 }
