@@ -1,17 +1,12 @@
-// -> ReactJS
-import { useCallback, useState } from "react";
+// -> Controller
+import { useHomeController } from "./useHomeController";
+
+// -> Components
 import { DrawerModal } from "./components/DrawerModal";
 
 export function Home() {
-  const [drawerModal, setDrawerModal] = useState(false);
-
-  const openDrawerModal = useCallback(() => {
-    setDrawerModal(true);
-  }, []);
-
-  const closeDrawerModal = useCallback(() => {
-    setDrawerModal(false);
-  }, []);
+  const { drawerModal, closeDrawerModal, openDrawerModal } =
+    useHomeController();
 
   return (
     <div className="flex flex-1 flex-col w-full max-w-[1024px] h-full m-auto overflow-hidden pb-4 md:pb-0">
