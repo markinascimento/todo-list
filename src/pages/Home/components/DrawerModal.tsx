@@ -4,6 +4,13 @@ import { X } from "lucide-react";
 // -> Utils
 import { cn } from "../../../utils/cn";
 
+// -> Controller
+import { useDrawerModalController } from "./useDrawerModalController";
+
+// -> Components
+import { Button } from "../../../components/Button";
+import { Input } from "../../../components/Input";
+
 // -> Types
 interface IDrawerModalProps {
   open: boolean;
@@ -11,6 +18,10 @@ interface IDrawerModalProps {
 }
 
 export function DrawerModal({ open, onClose }: IDrawerModalProps) {
+  const { task, handleChangeTask, handleSubmitForm } = useDrawerModalController(
+    { onClose }
+  );
+
   return (
     <div
       className={cn(
@@ -33,14 +44,19 @@ export function DrawerModal({ open, onClose }: IDrawerModalProps) {
           </button>
         </header>
 
-        <section className="flex flex-col flex-1 h-full w-full items-center justify-center gap-4 pb-10">
-          <input type="text" className="w-full" />
-          <input type="text" className="w-full" />
+        <form
+          onSubmit={handleSubmitForm}
+          className="flex flex-col flex-1 h-full w-full items-center justify-center gap-4 pb-10"
+        >
+          <Input
+            placeholder="Titulo"
+            value={task}
+            onChange={handleChangeTask}
+          />
 
-          <button className="bg-red-500 w-full">
-            <span> Cadastrar </span>
-          </button>
-        </section>
+          <Input placeholder="Tipo" />
+          <Button type="submit" />
+        </form>
       </main>
     </div>
   );
