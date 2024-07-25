@@ -9,10 +9,10 @@ import { Router } from "./routes";
 
 export function App() {
   return (
-    <BrowserRouter>
-      <TodoProvider>
+    <TodoProvider>
+      <BrowserRouter>
         <Router />
-      </TodoProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </TodoProvider>
   );
 }

@@ -2,30 +2,26 @@
 import { useHomeController } from "./useHomeController";
 
 // -> Components
+import { EmptyState } from "../../components/EmptyState";
 import { DrawerModal } from "./components/DrawerModal";
+import { Header } from "./components/Header";
 import { TaskCard } from "./components/TaskCard";
 
 export function Home() {
-  const {
-    filteredTasksOnlyNotCompleted,
-    drawerModal,
-    closeDrawerModal,
-    openDrawerModal,
-  } = useHomeController();
+  const { filteredNewTasks, drawerModal, closeDrawerModal, openDrawerModal } =
+    useHomeController();
 
   return (
     <div className="flex flex-1 flex-col w-full max-w-[1024px] h-full m-auto overflow-hidden pb-4 md:pb-0">
-      <header className="h-14 w-full ">
-        <h1> Boa noite </h1>
-      </header>
+      <Header />
 
       <main className="flex flex-1 flex-col overflow-auto pt-4">
-        {filteredTasksOnlyNotCompleted.length <= 0 ? (
+        {filteredNewTasks.length <= 0 ? (
           <>
-            <span> nadinha </span>
+            <EmptyState title="Nenhuma task criada até o momento." />
           </>
         ) : (
-          filteredTasksOnlyNotCompleted.map((task) => (
+          filteredNewTasks.map((task) => (
             <TaskCard key={task.task} task={task} />
           ))
         )}

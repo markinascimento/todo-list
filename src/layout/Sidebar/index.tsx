@@ -7,6 +7,9 @@ import { Outlet } from "react-router-dom";
 // -> Icons lib
 import { CircleCheckBig, Home } from "lucide-react";
 
+// -> Custom hooks
+import { useTodo } from "../../hooks/useTodo";
+
 // -> Utils
 import { cn } from "../../utils/cn";
 
@@ -15,6 +18,8 @@ import { ButtonOpenAndCloseSidebar } from "./components/ButtonOpenAndCloseSideba
 import { MenuItem } from "./components/MenuItem";
 
 export function Sidebar() {
+  const { filteredNewTasks, filteredTasksComplete } = useTodo();
+
   const [open, setOpen] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -33,7 +38,12 @@ export function Sidebar() {
       >
         <nav className="px-4 w-full h-full space-y-4 pt-12 md:pt-4">
           <button className="w-full h-10" onClick={toggleOpen}>
-            <MenuItem path="Home" link="/" Icon={Home} />
+            <MenuItem
+              link="/"
+              path="Home"
+              Icon={Home}
+              quantity={filteredNewTasks.length}
+            />
           </button>
 
           <button className="w-full h-10" onClick={toggleOpen}>
@@ -41,6 +51,7 @@ export function Sidebar() {
               path="Concluído"
               link="/completed"
               Icon={CircleCheckBig}
+              quantity={filteredTasksComplete.length}
             />
           </button>
         </nav>

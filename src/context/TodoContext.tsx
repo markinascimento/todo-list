@@ -1,10 +1,17 @@
 // -> ReactJS
-import { createContext, useCallback, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
 
 // -> Types
 import type { TaskDTO } from "../dtos/TaskDTO";
 export interface ITodoContextProps {
-  tasks: TaskDTO[];
+  filteredNewTasks: TaskDTO[];
+  filteredTasksComplete: TaskDTO[];
   handleRemoveTask(task: string): void;
   handleCompleteTask(task: string): void;
   handleCreateNewTask(task: string, type: string): void;
@@ -13,9 +20,7 @@ export interface ITodoContextProps {
 export const TodoContext = createContext({} as ITodoContextProps);
 
 export default function TodoProvider({ children }: { children: ReactNode }) {
-  const [tasks, setTasks] = useState<TaskDTO[]>([
-    { complete: false, task: "Ir para academia", type: "GYM" },
-  ]);
+  const [tasks, setTasks] = useState<TaskDTO[]>([]);
 
   const handleCreateNewTask = useCallback((task: string, type: string) => {
     setTasks((prevState) => {
@@ -54,10 +59,21 @@ export default function TodoProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  const filteredNewTasks = useMemo(
+    () => tasks.filter((task) => task.complete === false),
+    [tasks]
+  );
+
+  const filteredTasksComplete = useMemo(
+    () => tasks.filter((task) => task.complete === true),
+    [tasks]
+  );
+
   return (
     <TodoContext.Provider
       value={{
-        tasks,
+        filteredNewTasks,
+        filteredTasksComplete,
         handleCompleteTask,
         handleCreateNewTask,
         handleRemoveTask,

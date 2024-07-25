@@ -11,10 +11,11 @@ import { cn } from "../../../utils/cn";
 interface IMenuItemProps {
   link: string;
   path: string;
+  quantity: number;
   Icon: ElementType;
 }
 
-export function MenuItem({ path, link, Icon }: IMenuItemProps) {
+export function MenuItem({ path, link, quantity, Icon }: IMenuItemProps) {
   const { pathname } = useLocation();
 
   const isActive = pathname === link;
@@ -33,9 +34,11 @@ export function MenuItem({ path, link, Icon }: IMenuItemProps) {
         </span>
       </Link>
 
-      <div className="flex items-center justify-center w-8 h-6 bg-white rounded-md">
-        <span className="text-sm font-medium"> 10 </span>
-      </div>
+      {quantity > 0 && (
+        <div className="flex items-center justify-center w-8 h-6 bg-white rounded-md">
+          <span className="text-sm font-medium"> {quantity} </span>
+        </div>
+      )}
     </div>
   );
 }
