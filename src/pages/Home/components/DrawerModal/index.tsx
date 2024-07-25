@@ -2,14 +2,14 @@
 import { X } from "lucide-react";
 
 // -> Utils
-import { cn } from "../../../utils/cn";
+import { cn } from "../../../../utils/cn";
 
 // -> Controller
 import { useDrawerModalController } from "./useDrawerModalController";
 
 // -> Components
-import { Button } from "../../../components/Button";
-import { Input } from "../../../components/Input";
+import { Button } from "../../../../components/Button";
+import { Input } from "../../../../components/Input";
 
 // -> Types
 interface IDrawerModalProps {

@@ -14,6 +14,7 @@ export const TodoContext = createContext({} as ITodoContextProps);
 
 export default function TodoProvider({ children }: { children: ReactNode }) {
   const [tasks, setTasks] = useState<TaskDTO[]>([]);
+  // const [type, setType] = useState<string>("");
 
   const handleCreateNewTask = useCallback((task: string) => {
     setTasks((prevState) => {
@@ -25,6 +26,7 @@ export default function TodoProvider({ children }: { children: ReactNode }) {
 
       const newTask = {
         task,
+        type: "",
         complete: false,
       };
 

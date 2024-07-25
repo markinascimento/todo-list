@@ -5,7 +5,7 @@ import { useHomeController } from "./useHomeController";
 import { DrawerModal } from "./components/DrawerModal";
 
 export function Home() {
-  const { drawerModal, closeDrawerModal, openDrawerModal } =
+  const { tasks, drawerModal, closeDrawerModal, openDrawerModal } =
     useHomeController();
 
   return (
@@ -15,18 +15,28 @@ export function Home() {
       </header>
 
       <main className="flex flex-1 flex-col  overflow-auto">
-        <span> principal </span> <br /> <br /> <br /> <br /> <br />
-        <span> principal </span> <br /> <br /> <br /> <br /> <br />
-        <span> principal </span> <br /> <br /> <br /> <br /> <br />
-        <span> principal </span> <br /> <br /> <br /> <br /> <br />
-        <span> principal </span> <br /> <br /> <br /> <br /> <br />
-        <span> principal </span> <br /> <br /> <br /> <br /> <br />
-        <span> principal </span> <br /> <br /> <br /> <br /> <br />
-        <span> principal </span> <br /> <br /> <br /> <br /> <br />
-        <span> principal </span> <br /> <br /> <br /> <br /> <br />
-        <span> principal </span> <br /> <br /> <br /> <br /> <br />
-        <span> principal </span> <br /> <br /> <br /> <br /> <br />
-        <span> principal 2 </span> <br /> <br /> <br /> <br /> <br />
+        {tasks.length < 0 ? (
+          <>
+            <span> principal </span> <br /> <br /> <br /> <br /> <br />
+            <span> principal </span> <br /> <br /> <br /> <br /> <br />
+            <span> principal </span> <br /> <br /> <br /> <br /> <br />
+            <span> principal </span> <br /> <br /> <br /> <br /> <br />
+            <span> principal </span> <br /> <br /> <br /> <br /> <br />
+            <span> principal </span> <br /> <br /> <br /> <br /> <br />
+            <span> principal </span> <br /> <br /> <br /> <br /> <br />
+            <span> principal </span> <br /> <br /> <br /> <br /> <br />
+            <span> principal </span> <br /> <br /> <br /> <br /> <br />
+            <span> principal </span> <br /> <br /> <br /> <br /> <br />
+            <span> principal </span> <br /> <br /> <br /> <br /> <br />
+            <span> principal 2 </span> <br /> <br /> <br /> <br /> <br />
+          </>
+        ) : (
+          tasks.map((task) => (
+            <div key={task.task}>
+              <span> {task.task} </span>
+            </div>
+          ))
+        )}
       </main>
 
       <footer className="flex items-center justify-center h-14 w-full px-4 ">

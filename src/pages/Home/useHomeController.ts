@@ -1,7 +1,12 @@
 // -> ReactJS
 import { useCallback, useState } from "react";
 
+// -> Custom hooks
+import { useTodo } from "../../hooks/useTodo";
+
 export function useHomeController() {
+  const { tasks } = useTodo();
+
   const [drawerModal, setDrawerModal] = useState(false);
 
   const openDrawerModal = useCallback(() => {
@@ -13,6 +18,7 @@ export function useHomeController() {
   }, []);
 
   return {
+    tasks,
     drawerModal,
     openDrawerModal,
     closeDrawerModal,
