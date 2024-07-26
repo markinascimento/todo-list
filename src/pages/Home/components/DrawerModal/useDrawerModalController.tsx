@@ -4,7 +4,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react";
 // -> Context API
 import { useTodo } from "../../../../hooks/useTodo";
 
-export function useDrawerModalController({ onClose }: { onClose(): void }) {
+export function useDrawerModalController() {
   const { handleCreateNewTask } = useTodo();
 
   const [task, setTask] = useState<string>("");
@@ -18,8 +18,8 @@ export function useDrawerModalController({ onClose }: { onClose(): void }) {
     event.preventDefault();
 
     handleCreateNewTask(task, type);
-    onClose();
     setTask("");
+    setType("");
   }
 
   return {

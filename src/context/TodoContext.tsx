@@ -69,6 +69,7 @@ export default function TodoProvider({ children }: { children: ReactNode }) {
     [tasks]
   );
 
+  console.log({ tasks });
   return (
     <TodoContext.Provider
       value={{

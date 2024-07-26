@@ -23,7 +23,7 @@ interface IDrawerModalProps {
 
 export function DrawerModal({ open, onClose }: IDrawerModalProps) {
   const { task, type, setType, handleChangeTask, handleSubmitForm } =
-    useDrawerModalController({ onClose });
+    useDrawerModalController();
 
   return (
     <div
